@@ -57,13 +57,17 @@ tb2 <- tb1 %>%
 
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
 
-ggplot(tb2, aes(x = Entity, y = media, fill = Entity)) +
-  geom_col() +
+ggplot(tb2, aes(x = fct_reorder(Entity, media), 
+                y = media, fill = Entity)) +
+  geom_col(alpha = 0.7) +
   geom_errorbar(aes(x = Entity, y = media,
                     ymin = media - se, ymax = media + se),
-                width = 0.3, size = 0.8) +
+                width = 0.32, size = 0.8) +
   scale_fill_manual(values = as.vector(alphabet(17))) +
   labs(x = "Países", title = "Porcentagem média de pessoas que fumam todos os dias", subtitle = "Ano de 2012",
        y = "") +
-  theme_minimal() +
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        axis.title = element_text(size = 14),
+        axis.text = element_text(size = 12, color = "black",
+                                 hjust = 1),
+        axis.text.x = element_text(angle = 45))
