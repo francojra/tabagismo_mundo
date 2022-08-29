@@ -25,6 +25,7 @@
 # Carregar pacotes necessários -------------------------------------------------------------------------------------------------------------
 
 library(tidyverse)
+library(pals)
 
 # Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
@@ -53,3 +54,16 @@ tb2 <- tb1 %>%
   summarise(media = mean(smoking), sd = sd(smoking),
             n = n(), se = sd/sqrt(n)) %>%
   view()
+
+# Gráficos ---------------------------------------------------------------------------------------------------------------------------------
+
+ggplot(tb2, aes(x = Entity, y = media, fill = Entity)) +
+  geom_col() +
+  geom_errorbar(aes(x = Entity, y = media,
+                    ymin = media - se, ymax = media + se),
+                width = 0.3, size = 0.8) +
+  scale_fill_manual(values = as.vector(alphabet(17))) +
+  labs(x = "Países", title = "Porcentagem média de pessoas que fumam todos os dias", subtitle = "Ano de 2012",
+       y = "") +
+  theme_minimal() +
+  theme(legend.position = "none")
