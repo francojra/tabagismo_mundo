@@ -38,3 +38,18 @@ tb1 <- tb %>%
   rename(smoking = Daily.smoking.prevalence...both..IHME..GHDx..2012..)
 view(tb1)
 
+tb1 <- tb1 %>%
+  select(Entity, Year, smoking) 
+view(tb1)
+
+tb2 <- tb1 %>%
+  filter(Entity %in% c("Canada", "United States", "Mexico",
+                       "Brazil", "Venezuela", "Suriname",
+                       "Paraguay", "Uruguay", "Argentina",
+                       "Chile", "Bolivia", "Nicaragua",
+                       "Peru", "Ecuador", "Panama",
+                       "Guatemala", "Guyana")) %>%
+  group_by(Entity) %>%
+  summarise(media = mean(smoking), sd = sd(smoking),
+            n = n(), se = sd/sqrt(n)) %>%
+  view()
