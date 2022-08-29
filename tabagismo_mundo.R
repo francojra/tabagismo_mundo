@@ -21,3 +21,20 @@
 #### isso é um ponto positivo de desenvolvimento da saúde global.
 #### É possíel que agora a população viva por um mais longo período
 #### de vida e de forma mais saudável.
+
+# Carregar pacotes necessários -------------------------------------------------------------------------------------------------------------
+
+library(tidyverse)
+
+# Carregar dados ---------------------------------------------------------------------------------------------------------------------------
+
+tb <- read.csv("daily-smoking-prevalence-bounds.csv")
+view(tb)
+names(tb)
+
+# Manipular dados --------------------------------------------------------------------------------------------------------------------------
+
+tb1 <- tb %>%
+  rename(smoking = Daily.smoking.prevalence...both..IHME..GHDx..2012..)
+view(tb1)
+
