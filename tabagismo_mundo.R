@@ -64,7 +64,9 @@ ggplot(tb2, aes(x = fct_reorder(Entity, media),
                     ymin = media - se, ymax = media + se),
                 width = 0.32, size = 0.8) +
   scale_fill_manual(values = as.vector(alphabet(17))) +
-  labs(x = "Países", title = "Porcentagem média de pessoas que fumam todos os dias", subtitle = "Ano de 2012",
+  labs(x = "Países", 
+       title = "Porcentagem média de pessoas que fumam todos os dias", 
+       subtitle = "De 1980 a 2012",
        y = "") +
   theme(legend.position = "none",
         axis.title = element_text(size = 14),
